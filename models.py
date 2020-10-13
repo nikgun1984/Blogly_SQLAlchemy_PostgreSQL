@@ -28,7 +28,7 @@ class User(db.Model):
     )
 
     image_url = db.Column(
-        db.String(50),
+        db.Text,
         nullable = False,
         default = 'No image File Available'
     )

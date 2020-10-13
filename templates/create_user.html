@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+{% block title%} Create User {% endblock%}
+
+{%block content%}
+    <h1 class="display-4 text-center text-light">Create a User</h1>
+    <div class="jumbotron">
+        <div class="row mt-5">
+            <div class="col text-center">
+                <form action="", method="POST">
+                    <div class="form-group">
+                        <label for="first">First Name</label>
+                        <input type="text" id="first" name="first_name" placeholder="Enter a First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="first">Last Name</label>
+                        <input type="text" id="last" name="last_name" placeholder="Enter a Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="first">Image URL</label>
+                        <input type="text" id="picture" name="picture" placeholder="Image of this User">
+                    </div>
+                    <button class="btn btn-outline-info btn-lg" type="submit">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{%endblock%}

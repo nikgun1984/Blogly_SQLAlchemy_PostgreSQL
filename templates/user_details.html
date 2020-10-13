@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+
+{% block title%} {{user.first_name~' '~user.last_name}} {% endblock %}
+
+{% block content%}
+    <div class="row">
+        <div class="col-5">
+            <img src="{{user.image_url}}" class="img-fluid img-thumbnail rounded" alt="" style="width: 200px">
+        </div>
+        <div class="col-7">
+            <div class="row">
+                <h6 class="display-4">{{user.first_name~' '~user.last_name}}</h2>
+            </div>
+            <div class="row ">
+                <button class="btn btn-outline-primary btn-lg m-4">Edit</button>
+                <button class="btn btn-outline-danger btn-lg m-4">Delete</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
