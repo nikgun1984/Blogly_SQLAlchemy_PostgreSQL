@@ -32,3 +32,8 @@ class User(db.Model):
         nullable = False,
         default = 'No image File Available'
     )
+
+    @property
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
+
