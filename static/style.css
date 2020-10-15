@@ -1,3 +1,10 @@
 body{
     background-color: #c5f8e7;
 }
+
+.success{
+    color: whitesmoke;
+    background-color: rgba(125, 205, 236, 0.6);
+    font-size: 2rem;
+    text-align: center;
+}

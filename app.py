@@ -28,8 +28,8 @@ db.create_all()
 
 @app.route('/')
 def get_users():
-    users = User.query.all()
-    return render_template('users.html', users=users)
+    posts = Post.query.order_by(Post.created_at.desc()).limit(5)
+    return render_template('home.html', posts=posts)
 
 @app.route('/users')
 def display_users():
@@ -49,7 +49,7 @@ def submit_user():
     new_user  = User(first_name=first_name, last_name=last_name, image_url=image_url)
     db.session.add(new_user)
     db.session.commit()
-
+    flash("This user was successfully added...","success")
     return redirect(f'/users/{new_user.id}')
 
 @app.route("/users/<int:user_id>")
@@ -76,7 +76,7 @@ def edit_user(user_id):
     user.image_url = image_url
 
     db.session.commit()
-
+    flash("This user was successfully edited...","success")
     return redirect('/users')
 
 @app.route('/users/<int:user_id>/delete', methods=["POST"])
@@ -84,6 +84,7 @@ def delete_user(user_id):
     user = User.query.get(user_id)
     db.session.delete(user)
     db.session.commit()
+    flash("This user was successfully deleted...","success")
     return redirect('/users')
 
 """Post Routes"""
@@ -100,8 +101,8 @@ def submit_post(user_id):
     new_post = Post(title=title, content=content, user_id=user_id)
     db.session.add(new_post)
     db.session.commit()
-
-    return f"the post was added to database"
+    flash("This post was successfully added...","success")
+    return redirect('/users')
 
 @app.route("/posts/<int:post_id>")
 def show_post(post_id):
@@ -124,14 +125,15 @@ def edit_post(post_id):
     post.content = content
 
     db.session.commit()
-
+    flash("This post was successfully edited...","success")
     return redirect('/users')
 
 @app.route('/posts/<int:post_id>/delete', methods=["POST"])
 def delete_post(post_id):
-    post = User.query.get(post_id)
+    post = Post.query.get(post_id)
     db.session.delete(post)
     db.session.commit()
+    flash("This post was successfully edited...","success")
     return redirect('/users')
 
 
