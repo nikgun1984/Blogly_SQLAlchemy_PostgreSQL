@@ -12,10 +12,21 @@
                 <h6 class="display-4">{{user.full_name}}</h6>
             </div>
             <div class="row">
-                <a href="/{{user.id}}/edit" class="btn btn-outline-primary btn-lg m-4 text-decoration-none">Edit</a>
-                <form action="/{{user.id}}/delete", method="POST">
+                <a href="/users/{{user.id}}/edit" class="btn btn-outline-primary btn-lg m-4 text-decoration-none">Edit</a>
+                <form action="/users/{{user.id}}/delete", method="POST">
                     <button class="btn btn-outline-danger btn-lg m-4">Delete</button>
                 </form>
+            </div>
+            <div class="row">
+                <h6 class="display-4">Posts</h6>
+                <ul>
+                    {% for post in posts%}
+                        <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+                    {%endfor%}
+                </ul>
+            </div>
+            <div class="row">
+                <a href="/users/{{user.id}}/posts/new" class="btn btn-outline-primary btn-lg m-4 text-decoration-none">Add Post</a>
             </div>
         </div>
     </div>
