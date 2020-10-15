@@ -79,7 +79,7 @@ def edit_user(user_id):
 
     return redirect('/users')
 
-@app.route('/<int:user_id>/delete', methods=["POST"])
+@app.route('/users/<int:user_id>/delete', methods=["POST"])
 def delete_user(user_id):
     user = User.query.get(user_id)
     db.session.delete(user)
@@ -108,6 +108,33 @@ def show_post(post_id):
     post = Post.query.get(post_id)
     user = User.query.get(post.user_id)
     return render_template('show_post.html',post=post,user=user)
+
+@app.route("/posts/<int:post_id>/edit")
+def edit_form_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template("edit_post.html", post=post)
+
+@app.route("/posts/<int:post_id>/edit", methods=["POST"])
+def edit_post(post_id):
+    title = request.form["title"]
+    content = request.form["content"]
+
+    post = Post.query.get(post_id)
+    post.title = title
+    post.content = content
+
+    db.session.commit()
+
+    return redirect('/users')
+
+@app.route('/posts/<int:post_id>/delete', methods=["POST"])
+def delete_post(post_id):
+    post = User.query.get(post_id)
+    db.session.delete(post)
+    db.session.commit()
+    return redirect('/users')
+
+
 
 
 
