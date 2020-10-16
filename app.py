@@ -133,8 +133,12 @@ def delete_post(post_id):
     post = Post.query.get(post_id)
     db.session.delete(post)
     db.session.commit()
-    flash("This post was successfully edited...","success")
+    flash("This post was successfully deleted...","success")
     return redirect('/users')
+
+@app.errorhandler(404)
+def not_found(e): 
+    return render_template("404.html") 
 
 
 

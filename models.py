@@ -72,6 +72,6 @@ class Post(db.Model):
         db.ForeignKey('users.id')
     )
 
-    users = db.relationship("User")
+    users = db.relationship("User",cascade="all, delete")
 
 

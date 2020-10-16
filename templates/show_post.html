@@ -8,8 +8,11 @@
         {{post.content}}
     </p>
     <p><em>By {{user.full_name}}</em></p>
-    <a href="/users/{{user.id}}" class="btn btn-outline-primary btn-lg">Cancel</a>
-    <a href="/posts/{{post.id}}/edit" class="btn btn-primary btn-lg">Edit</a>
-    <a href="/posts/{{post.id}}/delete" class="btn btn-danger btn-lg">Delete</a>
-
+    <div class="row">
+        <a href="/users/{{user.id}}" class="btn btn-outline-primary btn-lg mr-2">Cancel</a>
+        <a href="/posts/{{post.id}}/edit" class="btn btn-primary btn-lg mr-2">Edit</a>
+        <form action="/posts/{{post.id}}/delete", method="POST">
+            <button class="btn btn-danger btn-lg">Delete</button>
+        </form>
+    </div>
 {% endblock %}
