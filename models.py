@@ -73,7 +73,7 @@ class Post(db.Model):
     )
 
     #relationships
-    users = db.relationship("User")
+    users = db.relationship("User", backref=db.backref("posts", cascade="all,delete"))
 
     def __repr__(self):
         return f'<Post: {self.title}, {self.content}, {self.created_at}>'
