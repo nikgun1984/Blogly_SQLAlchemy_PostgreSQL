@@ -5,10 +5,16 @@
 {% block content%} 
     <h1 class="display-4">{{tag.name.lower().capitalize()}}</h1>
     <ul>
-        {% for post in post%}
+        {% for post in tag.posts%}
             <li>
                 <a href="">{{post.title}}</a>
             </li>
         {% endfor%}
     </ul>
+    <div class="row">
+        <a href="/tags/{{tag.id}}/edit" class="btn btn-primary btn-lg mr-2">Edit</a>
+        <form action="/tags/{{tag.id}}/delete", method="POST">
+            <button class="btn btn-danger btn-lg">Delete</button>
+        </form>
+    </div>
 {% endblock %}

@@ -149,6 +149,43 @@ def list_tags():
     tags = Tag.query.all()
     return render_template('tags.html', tags=tags)
 
+@app.route('/tags/<int:tag_id>')
+def show_tag_posts(tag_id):
+    tag = Tag.query.get(tag_id)
+    return render_template('show_tag.html',tag=tag)
+
+@app.route('/tags/new')
+def create_tag():
+    return render_template('create_tag.html', )
+
+@app.route('/tags/new', methods=["POST"])
+def submit_tag():
+    tag_name = request.form["tag_name"]
+    new_tag = Tag(name=tag_name.lower().title())
+    db.session.add(new_tag)
+    db.session.commit()
+    return redirect('/tags')
+
+@app.route('/tags/<int:tag_id>/edit', methods=["POST"])
+def edit_tag(tag_id):
+    tag_name = request.form["tag_name"]
+    tag = Tag.query.get(tag_id)
+
+    tag.name = tag_name
+    db.session.commit()
+
+    return redirect('/tags')
+
+@app.route('/tags/<int:tag_id>/delete', methods=["POST"])
+def delete_tag(tag_id):
+    tag = Tag.query.get(tag_id)
+    db.session.delete(tag)
+    db.session.commit()
+    return redirect('/tags')
+
+
+
+
 
 
 
