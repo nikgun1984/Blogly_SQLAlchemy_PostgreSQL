@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+
+{% block title%} {{tag.name.lower().capitalize()}} {% endblock%}
+
+{% block content%} 
+    <h1 class="display-4">{{tag.name.lower().capitalize()}}</h1>
+    <ul>
+        {% for post in post%}
+            <li>
+                <a href="">{{post.title}}</a>
+            </li>
+        {% endfor%}
+    </ul>
+{% endblock %}

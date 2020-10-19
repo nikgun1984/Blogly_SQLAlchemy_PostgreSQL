@@ -4,7 +4,7 @@ from flask import Flask, render_template, redirect, flash, request
 from models import db, connect_db
 from flask_debugtoolbar import DebugToolbarExtension
 
-from models import db,  connect_db, User, Post
+from models import db,  connect_db, User, Post, Tag, PostTag
 
 app = Flask(__name__)
 
@@ -136,9 +136,22 @@ def delete_post(post_id):
     flash("This post was successfully deleted...","success")
     return redirect('/users')
 
+#Error Handling
+
 @app.errorhandler(404)
 def not_found(e): 
-    return render_template("404.html") 
+    return render_template("404.html")
+
+#Tags Routes
+
+@app.route('/tags')
+def list_tags():
+    tags = Tag.query.all()
+    return render_template('tags.html', tags=tags)
+
+
+
+
 
 
 
