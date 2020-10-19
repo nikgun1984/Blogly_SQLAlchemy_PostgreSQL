@@ -73,7 +73,7 @@ class Post(db.Model):
     )
 
     #relationships
-    users = db.relationship("User",cascade="all, delete")
+    users = db.relationship("User")
 
     def __repr__(self):
         return f'<Post: {self.title}, {self.content}, {self.created_at}>'
@@ -94,9 +94,7 @@ class Tag(db.Model):
         unique = True
     )
     #relationships
-    assignments = db.relationship('PostTag',backref='tags')
-
-    posts = db.relationship('Post',secondary='posts_tags',backref='tags')
+    posts = db.relationship('Post',secondary='posts_tags',backref=db.backref("tags"))
 
 class PostTag(db.Model):
 
