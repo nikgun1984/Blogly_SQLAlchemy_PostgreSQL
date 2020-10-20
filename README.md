@@ -3,7 +3,8 @@
 Simple blogging Flask App with SQLAlchemy/PostgreSQL and some Bootstrap for frontend  
 Relationships that are used in the app:
 * Many-to-Many
-* One-to-Many
+* One-to-Many   
+
 Tables:
 * users
 * posts
